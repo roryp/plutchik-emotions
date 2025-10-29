@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plutchik's Wheel of Emotions - Interactive Dyad Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌈 Plutchik's Wheel of Emotions</h1>
+            <p class="subtitle">Explore emotional dyads and their complex blends</p>
+        </header>
+
+        <main>
+            <section class="emotion-wheel-section">
+                <div class="wheel-container">
+                    <canvas id="emotionWheel" width="600" height="600"></canvas>
+                    <div class="wheel-instructions">Click on two emotions to create a dyad</div>
+                </div>
+            </section>
+
+            <section class="dyad-selector">
+                <h2>Select Dyad Type</h2>
+                <div class="dyad-type-buttons">
+                    <button class="dyad-type-btn active" data-type="primary">Primary Dyads</button>
+                    <button class="dyad-type-btn" data-type="secondary">Secondary Dyads</button>
+                    <button class="dyad-type-btn" data-type="tertiary">Tertiary Dyads</button>
+                    <button class="dyad-type-btn" data-type="opposite">Opposite Dyads</button>
+                </div>
+
+                <div class="dyad-combinations">
+                    <!-- Dynamically populated -->
+                </div>
+            </section>
+
+            <section class="result-display" id="resultDisplay">
+                <div class="result-content">
+                    <div class="result-header">
+                        <h2 id="dyadName">Select a dyad combination</h2>
+                        <div class="emotion-badges" id="emotionBadges"></div>
+                    </div>
+                    <div class="result-visualization" id="resultVisualization"></div>
+                    <div class="result-explanation" id="resultExplanation">
+                        <p>Choose emotions from the wheel or select a pre-defined dyad combination to explore the emotional blend and its psychological meaning.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Based on Robert Plutchik's psychoevolutionary theory of emotions</p>
+        </footer>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
