@@ -2,6 +2,8 @@
 
 An interactive web application for exploring emotional dyads based on Robert Plutchik's psychoevolutionary theory of emotions.
 
+**🌐 Live Demo:** [https://roryp.github.io/plutchik-emotions/](https://roryp.github.io/plutchik-emotions/)
+
 ![Plutchik's Wheel of Emotions](https://img.shields.io/badge/Emotions-8%20Basic-blue) ![Dyads](https://img.shields.io/badge/Dyads-32%20Total-green) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## 🎯 Features
@@ -29,7 +31,7 @@ An interactive web application for exploring emotional dyads based on Robert Plu
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/plutchik-emotions.git
+git clone https://github.com/roryp/plutchik-emotions.git
 cd plutchik-emotions
 ```
 
@@ -120,9 +122,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📧 Contact
 
-Your Name - [@yourhandle](https://twitter.com/yourhandle)
+Rory Preddy - [@roryp](https://github.com/roryp)
 
-Project Link: [https://github.com/yourusername/plutchik-emotions](https://github.com/yourusername/plutchik-emotions)
+Project Link: [https://github.com/roryp/plutchik-emotions](https://github.com/roryp/plutchik-emotions)
 
 ---
 
