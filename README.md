@@ -59,7 +59,10 @@ You can explore emotions programmatically using GitHub Copilot with Playwright M
 
 #### Prerequisites:
 - **GitHub Copilot** (VS Code extension or GitHub Copilot Chat)
-- **Playwright MCP Server** enabled in your environment
+- **Playwright MCP Server** - Install from [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
+  
+  [![Install Playwright MCP in VS Code](https://img.shields.io/badge/VS%20Code-Install%20Playwright%20MCP-blue?style=for-the-badge&logo=visual-studio-code)](https://github.com/microsoft/playwright-mcp)
+
 - Local web server running (`python -m http.server 8000`)
 
 #### Required MCP Tools:
