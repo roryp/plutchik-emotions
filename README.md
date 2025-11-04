@@ -53,6 +53,56 @@ http://localhost:8000
 4. **Explore Scores**: See how different intensity combinations affect the overall dyad score (0-6)
 5. **Learn**: Read detailed explanations about each emotional combination
 
+### 🤖 Using with GitHub Copilot & Playwright MCP Tools
+
+You can explore emotions programmatically using GitHub Copilot with Playwright Model Context Protocol (MCP) tools. This is useful for automated exploration, emotional analysis, or AI-powered emotional intelligence applications.
+
+#### Prerequisites:
+- **GitHub Copilot** (VS Code extension or GitHub Copilot Chat)
+- **Playwright MCP Server** enabled in your environment
+- Local web server running (`python -m http.server 8000`)
+
+#### Required MCP Tools:
+GitHub Copilot will automatically use these Playwright MCP tools:
+- `mcp_playwright_browser_navigate` - Navigate to the website
+- `mcp_playwright_browser_click` - Interact with dyad buttons and selections
+- `mcp_playwright_browser_take_screenshot` - Capture emotional insights
+
+#### Example Use Case: Finding What Emotions Create Anxiety
+
+Simply ask GitHub Copilot:
+
+```
+"Show me on the website what emotions create anxiety using the Playwright MCP tool"
+```
+
+**What GitHub Copilot will do:**
+1. Start a local server if needed
+2. Navigate to `http://localhost:8000`
+3. Click on the "Tertiary Dyads" button
+4. Click on the "ANXIETY" dyad
+5. Take a screenshot and explain the result
+
+**Result**: Anxiety = **Anticipation + Fear**
+
+You'll receive:
+- The two emotions that create anxiety (anticipation and fear)
+- Intensity levels for each emotion
+- A detailed explanation of why these emotions combine to create anxiety
+- The total dyad intensity score
+- A screenshot saved to `.playwright-mcp/anxiety-emotions.png`
+
+#### Other Example Prompts:
+
+```
+"What emotions create love? Show me on the website."
+"Find all the primary dyads and explain them."
+"Show me the opposite dyad for joy and sadness."
+"What's the difference between guilt and shame? Check the website."
+```
+
+This approach allows you to explore any emotional dyad naturally through conversation with GitHub Copilot, making emotional intelligence exploration more intuitive and accessible.
+
 ## 🎨 Understanding the Wheel
 
 ### Basic Emotions (8)
