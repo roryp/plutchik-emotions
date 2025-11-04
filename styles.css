@@ -626,4 +626,52 @@ footer {
     .result-header h2 {
         font-size: 1.8rem;
     }
+    
+    /* Improve touch targets for mobile */
+    .dyad-type-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        min-height: 44px; /* iOS recommended touch target */
+    }
+    
+    .dyad-item {
+        padding: 1.2rem 1.5rem;
+        min-height: 60px;
+    }
+    
+    .intensity-level.clickable {
+        padding: 1rem 1.2rem;
+        min-height: 50px;
+    }
+    
+    #emotionWheel {
+        touch-action: none; /* Prevent browser gestures */
+    }
+    
+    .wheel-container {
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .intensity-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Improve all clickable elements for touch */
+.dyad-type-btn,
+.dyad-item,
+.intensity-level.clickable {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    touch-action: manipulation; /* Prevents double-tap zoom */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#emotionWheel {
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }

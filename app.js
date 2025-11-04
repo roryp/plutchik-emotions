@@ -341,16 +341,65 @@ class PlutchikWheel {
     }
     
     setupEventListeners() {
-        // Canvas click handler for selecting emotions
+        // Helper function to get coordinates from mouse or touch event
+        // This properly scales coordinates to match the canvas drawing coordinate system
+        const getCoordinates = (e, rect) => {
+            let clientX, clientY;
+            if (e.touches && e.touches.length > 0) {
+                // Touch event
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else if (e.changedTouches && e.changedTouches.length > 0) {
+                // Touch end event
+                clientX = e.changedTouches[0].clientX;
+                clientY = e.changedTouches[0].clientY;
+            } else {
+                // Mouse event
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            
+            // Get position relative to canvas
+            const canvasX = clientX - rect.left;
+            const canvasY = clientY - rect.top;
+            
+            // Scale coordinates to match the canvas drawing coordinate system
+            // The canvas may be displayed at a different size than its drawing coordinates
+            const scaleX = this.canvas.width / this.dpr / rect.width;
+            const scaleY = this.canvas.height / this.dpr / rect.height;
+            
+            const x = canvasX * scaleX;
+            const y = canvasY * scaleY;
+            
+            return { x, y };
+        };
+        
+        // Canvas click handler for selecting emotions (mouse)
         this.canvas.addEventListener('click', (e) => {
             const rect = this.canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const { x, y } = getCoordinates(e, rect);
             
             const emotionData = this.getEmotionAtPoint(x, y);
             if (emotionData) {
                 this.handleIntensityClick(emotionData.emotion, emotionData.intensity);
             }
+        });
+        
+        // Canvas touch handler for mobile devices
+        this.canvas.addEventListener('touchend', (e) => {
+            e.preventDefault(); // Prevent mouse event from firing
+            const rect = this.canvas.getBoundingClientRect();
+            const { x, y } = getCoordinates(e, rect);
+            
+            const emotionData = this.getEmotionAtPoint(x, y);
+            if (emotionData) {
+                this.handleIntensityClick(emotionData.emotion, emotionData.intensity);
+            }
+        });
+        
+        // Prevent default touch behavior to avoid double-tap zoom
+        this.canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
         });
         
         // Dyad type buttons
@@ -395,7 +444,8 @@ class PlutchikWheel {
             item.appendChild(name);
             item.appendChild(emotions);
             
-            item.addEventListener('click', () => {
+            const handleDyadSelect = (e) => {
+                e.preventDefault();
                 this.selectedEmotions = [...dyad.emotions];
                 // Set default intensities if not already set
                 if (!this.selectedIntensities[dyad.emotions[0]]) {
@@ -406,7 +456,10 @@ class PlutchikWheel {
                 }
                 this.displayDyadResult(dyad);
                 this.drawWheel();
-            });
+            };
+            
+            item.addEventListener('click', handleDyadSelect);
+            item.addEventListener('touchend', handleDyadSelect);
             
             container.appendChild(item);
         });
@@ -531,15 +584,19 @@ class PlutchikWheel {
             </div>
         `;
         
-        // Add click handlers to intensity levels
+        // Add click and touch handlers to intensity levels
         document.querySelectorAll('.intensity-level.clickable').forEach(level => {
-            level.addEventListener('click', (e) => {
+            const handleIntensitySelect = (e) => {
+                e.preventDefault();
                 const emotion = level.dataset.emotion;
                 const intensity = level.dataset.intensity;
                 this.selectedIntensities[emotion] = intensity;
                 this.drawWheel();  // Redraw the wheel with new selection
                 this.displayDyadResult(dyad);  // Update the result display
-            });
+            };
+            
+            level.addEventListener('click', handleIntensitySelect);
+            level.addEventListener('touchend', handleIntensitySelect);
         });
         
         // Create explanation
