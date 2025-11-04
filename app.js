@@ -404,14 +404,36 @@ class PlutchikWheel {
         
         // Dyad type buttons
         document.querySelectorAll('.dyad-type-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            let touchHandled = false;
+            
+            const handleButtonClick = (e) => {
+                // For touch events, set flag and prevent click
+                if (e.type === 'touchend') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    touchHandled = true;
+                    
+                    // Reset flag after a short delay
+                    setTimeout(() => {
+                        touchHandled = false;
+                    }, 500);
+                } else if (e.type === 'click' && touchHandled) {
+                    // Ignore click if it was triggered by touch
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                
                 document.querySelectorAll('.dyad-type-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
                 const type = btn.dataset.type;
                 this.currentDyadType = type;
                 this.displayDyadCombinations(type);
-            });
+            };
+            
+            btn.addEventListener('click', handleButtonClick);
+            btn.addEventListener('touchend', handleButtonClick, { passive: false });
         });
     }
     
@@ -444,8 +466,26 @@ class PlutchikWheel {
             item.appendChild(name);
             item.appendChild(emotions);
             
+            let touchHandled = false;
+            
             const handleDyadSelect = (e) => {
-                e.preventDefault();
+                // For touch events, set flag and prevent click
+                if (e.type === 'touchend') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    touchHandled = true;
+                    
+                    // Reset flag after a short delay
+                    setTimeout(() => {
+                        touchHandled = false;
+                    }, 500);
+                } else if (e.type === 'click' && touchHandled) {
+                    // Ignore click if it was triggered by touch
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                
                 this.selectedEmotions = [...dyad.emotions];
                 // Set default intensities if not already set
                 if (!this.selectedIntensities[dyad.emotions[0]]) {
@@ -459,7 +499,7 @@ class PlutchikWheel {
             };
             
             item.addEventListener('click', handleDyadSelect);
-            item.addEventListener('touchend', handleDyadSelect);
+            item.addEventListener('touchend', handleDyadSelect, { passive: false });
             
             container.appendChild(item);
         });
@@ -586,8 +626,26 @@ class PlutchikWheel {
         
         // Add click and touch handlers to intensity levels
         document.querySelectorAll('.intensity-level.clickable').forEach(level => {
+            let touchHandled = false;
+            
             const handleIntensitySelect = (e) => {
-                e.preventDefault();
+                // For touch events, set flag and prevent click
+                if (e.type === 'touchend') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    touchHandled = true;
+                    
+                    // Reset flag after a short delay
+                    setTimeout(() => {
+                        touchHandled = false;
+                    }, 500);
+                } else if (e.type === 'click' && touchHandled) {
+                    // Ignore click if it was triggered by touch
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                
                 const emotion = level.dataset.emotion;
                 const intensity = level.dataset.intensity;
                 this.selectedIntensities[emotion] = intensity;
@@ -596,7 +654,7 @@ class PlutchikWheel {
             };
             
             level.addEventListener('click', handleIntensitySelect);
-            level.addEventListener('touchend', handleIntensitySelect);
+            level.addEventListener('touchend', handleIntensitySelect, { passive: false });
         });
         
         // Create explanation

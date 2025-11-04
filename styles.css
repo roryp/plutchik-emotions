@@ -629,19 +629,36 @@ footer {
     
     /* Improve touch targets for mobile */
     .dyad-type-btn {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        min-height: 44px; /* iOS recommended touch target */
+        padding: 1.2rem 1.5rem;
+        font-size: 1.05rem;
+        min-height: 48px; /* iOS recommended touch target */
+        width: 100%;
+        text-align: center;
     }
     
     .dyad-item {
-        padding: 1.2rem 1.5rem;
-        min-height: 60px;
+        padding: 1.5rem 1.5rem;
+        min-height: 70px;
+    }
+    
+    .dyad-item-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .dyad-item-emotions {
+        font-size: 1rem;
+    }
+    
+    .emotion-tag {
+        padding: 0.4rem 1rem;
+        font-size: 0.95rem;
     }
     
     .intensity-level.clickable {
-        padding: 1rem 1.2rem;
-        min-height: 50px;
+        padding: 1.2rem 1.2rem;
+        min-height: 56px;
+        font-size: 1rem;
     }
     
     #emotionWheel {
@@ -657,6 +674,12 @@ footer {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+    
+    /* Better spacing for mobile */
+    .dyad-combinations {
+        max-height: 500px;
+        gap: 1rem;
+    }
 }
 
 /* Improve all clickable elements for touch */
@@ -667,6 +690,15 @@ footer {
     touch-action: manipulation; /* Prevents double-tap zoom */
     user-select: none;
     -webkit-user-select: none;
+    position: relative;
+}
+
+/* Active state for touch feedback */
+.dyad-type-btn:active,
+.dyad-item:active,
+.intensity-level.clickable:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 #emotionWheel {
