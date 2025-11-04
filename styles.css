@@ -236,6 +236,12 @@ main {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+.dyad-item.touched {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
 .dyad-item-name {
     font-weight: bold;
     font-size: 1rem;

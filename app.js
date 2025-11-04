@@ -486,6 +486,12 @@ class PlutchikWheel {
                     return;
                 }
                 
+                // Remove touched class from all items
+                document.querySelectorAll('.dyad-item').forEach(i => i.classList.remove('touched'));
+                
+                // Add touched class to this item
+                item.classList.add('touched');
+                
                 this.selectedEmotions = [...dyad.emotions];
                 // Set default intensities if not already set
                 if (!this.selectedIntensities[dyad.emotions[0]]) {
@@ -497,6 +503,12 @@ class PlutchikWheel {
                 this.displayDyadResult(dyad);
                 this.drawWheel();
             };
+            
+            // Add touch start for immediate visual feedback
+            item.addEventListener('touchstart', (e) => {
+                // Add temporary highlight on touch
+                item.classList.add('touched');
+            }, { passive: true });
             
             item.addEventListener('click', handleDyadSelect);
             item.addEventListener('touchend', handleDyadSelect, { passive: false });
